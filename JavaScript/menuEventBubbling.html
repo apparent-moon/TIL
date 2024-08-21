@@ -109,9 +109,20 @@
         //$('.black-bg').hide();
     });
 
-    $('.black-bg').on('click', function(){
+    /*$('.black-bg').on('click', function(){
         document.querySelector('.black-bg').classList.remove('show-modal');
         //$('.black-bg').removeClass('show-modal');
+    })*/
+
+    document.querySelector('.black-bg').addEventListener('click', function(e){
+        /*if ( e.target == document.querySelector('.black-bg') ) {
+            document.querySelector('.black-bg').classList.remove('show-modal');
+        }*/
+
+        if ($(e.target).is($('.black-bg'))) {
+            document.querySelector('.black-bg').classList.remove('show-modal');
+        }
+
     })
 
 </script>
