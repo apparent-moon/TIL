@@ -55,47 +55,50 @@
 
 <body>
 
-<div class="container mt-3">
-    <div class="card p-3">
-        <span class="title">상품명</span>
-        <span class="price"> 가격 </span>
+
+
+<div class="card-group container">
+    <div class="card">
+        <img src="https://via.placeholder.com/600">
+        <div class="card-body">
+            <h5><span class="title1">Card title</span></h5>
+            <p><span class="price1">가격 : 70000</span></p>
+            <button class="btn btn-danger">주문하기</button>
+        </div>
+    </div>
+    <div class="card">
+        <img src="https://via.placeholder.com/600">
+        <div class="card-body">
+            <h5><span class="title2">Card title</span></h5>
+            <p><span class="price2">가격 : 70000</span></p>
+            <button class="btn btn-danger">주문하기</button>
+        </div>
+    </div>
+    <div class="card">
+        <img src="https://via.placeholder.com/600">
+        <div class="card-body">
+            <h5><span class="title3">Card title</span></h5>
+            <p><span class="price3">가격 : 70000</span></p>
+            <button class="btn btn-danger">주문하기</button>
+        </div>
     </div>
 </div>
 
-<form class="container my-5 form-group">
-    <p>상품선택</p>
-    <select class="form-select mt-2">
-        <option>모자</option>
-        <option>셔츠</option>
-    </select>
-</form>
+<script>
+    var products = [
+        { id : 0, price : 70000, title : 'Blossom Dress' },
+        { id : 1, price : 50000, title : 'Springfield Shirt' },
+        { id : 2, price : 60000, title : 'Black Monastery' }
+    ];
 
-<div class="container mt-5">
-    <ul class="list">
-        <li class="tab-button" data-id="0">Products</li>
-        <li class="tab-button orange" data-id="1">Information</li>
-        <li class="tab-button" data-id="2">Shipping</li>
-    </ul>
-    <div class="tab-content">
-        <p>상품설명입니다. Product</p>
-    </div>
-    <div class="tab-content show">
-        <p>스펙설명입니다. Information</p>
-    </div>
-    <div class="tab-content">
-        <p>배송정보입니다. Shipping</p>
-    </div>
-</div>
+    document.querySelector('.title1').innerHTML = products[0].title;
+    document.querySelector('.price1').innerHTML = products[0].price;
+    document.querySelector('.title2').innerHTML = products[1].title;
+    document.querySelector('.price2').innerHTML = products[1].price;
+    document.querySelector('.title3').innerHTML = products[2].title;
+    document.querySelector('.price3').innerHTML = products[2].price;
 
 
-<script> //<script src="tab.js">
-
-
-var car = ['소나타', 50000, 'white'] //array
-var car2 = {name: '소나타', price: [50000, 30000, 40000]} //object
-
-document.querySelector('.title').innerHTML = car2.name;
-document.querySelector('.price').innerHTML = car2.price[0];
 
 </script>
 
