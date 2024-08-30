@@ -102,7 +102,8 @@
 //document.querySelector('#test').insertAdjacentHTML('beforeend', 템플릿);
 //$('#test').append(템플릿);
 
-var pants = [28,30,32];
+var pants = [28,30,32,34];
+var shirts = [90,95,100,105,110];
 
 var car = ['소나타', 50000, 'white'] //array
 var car2 = {name: '소나타', price: [50000, 30000, 40000]} //object
@@ -113,20 +114,20 @@ document.querySelector('.price').innerHTML = car2.price[0];
 $('.form-select').eq(0).on('input', function(){
 
     var value = $('.form-select').eq(0).val();
+    //var value = this.value;
 
     if (value == '셔츠') {
         $('.form-select').eq(1).removeClass('form-hide');
         $('.form-select').eq(1).html('');
-        var temp = `<option>95</option><option>100</option>`;
-        $('.form-select').eq(1).append(temp);
-    }
-    else if (value == '바지'){
+        shirts.forEach(function(item){
+            $('.form-select').eq(1).append('<option>item</option>');
+        })
+    }else if (value == '바지'){
         $('.form-select').eq(1).removeClass('form-hide');
         $('.form-select').eq(1).html('');
-        pants.forEach(function(e){
-            $('.form-select').eq(1).append('<option>e</option>');
+        pants.forEach(function(item){
+            $('.form-select').eq(1).append('<option>item</option>');
         })
-        $('.form-select').eq(1).append(temp);
     }else{
         $('.form-select').eq(1).addClass('form-hide');
     }
