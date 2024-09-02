@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="main.css" rel="stylesheet">
+    <title>Hello, world!</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+
+    </div>
+</div>
+
+<div class="container">
+    <button class="btn btn-danger" id="more" onclick="button_onclick()">더보기</button>
+</div>
+
+<div class="container my-3">
+    <button class="btn btn-danger" id="price" onclick="button_onclick()">가격정렬</button>
+</div>
+
+<div class="container my-3">
+    <button class="btn btn-danger" id="nameSort" onclick="button_onclick()">상품명 정렬</button>
+</div>
+
+<div class="container my-3">
+    <button class="btn btn-danger" id="under6" onclick="button_onclick()">6만원 이하 상품만 보기</button>
+</div>
+
+
+<script>
+    var count = 0;
+
+    function button_onclick(){
+        count ++;
+    }
+
+    var products = [
+        { id : 0, price : 70000, title : 'Blossom Dress' },
+        { id : 1, price : 50000, title : 'Springfield Shirt' },
+        { id : 2, price : 60000, title : 'Black Monastery' }
+    ]
+
+    function makeTemp(data){
+        data.forEach((a, i)=>{
+            var temp =
+                `<div class="col-sm-4">
+                         <img src="https://via.placeholder.com/600" class="w-100">
+                        <h5>${data[i].title}</h5>
+                        <p>가격 : ${data[i].price}</p>
+                        <button class="buy">구매</button>
+                        </div>`;
+            $('.row').append(temp)
+        });
+    }
+
+    localStorage.setItem('이름', 'kim');
+    localStorage.setItem('이름')
+    localStorage.removeItem('이름');
+
+    makeTemp(products);
+
+    //가격정렬
+    $('#price').click(function (){
+        products.sort(function (a, b){
+            return a.price - b.price
+        });
+        $('.row').html('');
+        makeTemp(products);
+    });
+
+    //상품명정렬
+    $('#nameSort').click(function (){
+        products.sort(function (a, b){
+            if(a.title > b.title) return -1;
+            if(a.title < b.title) return 1;
+            return 0;
+        });
+        $('.row').html('');
+        makeTemp(products);
+    });
+
+    //6만원 이하 상품만 보기
+    $('#under6').click(function (){
+        var newProducts = products.filter(function (a){
+            return a.price <= 60000
+        });
+
+        // arrow 문법
+        // var newProduct = products.filter(a => a.price <= 60000);
+
+        $('.row').html('');
+        makeTemp(newProducts);
+    });
+
+    $('#more').click(function (){
+        if(count == 1){
+            $.get('https://codingapple1.github.io/js/more1.json')
+                .done((data)=>{
+                    makeTemp(data);
+                });
+        }else if(count == 2){
+            $.get('https://codingapple1.github.io/js/more2.json')
+                .done((data)=>{
+                    makeTemp(data);
+                });
+            $("#more").hide();
+        }
+    });
+
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

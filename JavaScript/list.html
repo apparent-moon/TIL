@@ -99,6 +99,27 @@
     document.querySelector('.price3').innerHTML = products[2].price;
 
 
+    //JQuery
+    $.get('https://codingapple1.github.io/price.json ').done(function (data) {
+        console.log(data.price);
+    }).fail(function(){
+        console.log("FAIL");
+    })
+
+    $.post('http://////', {name:'kim'}).done(function(data){
+
+    });
+
+    //JS
+    fetch('https://codingapple1.github.io/price.json')
+        .then(res => res.json()) //json -> object == $.get
+        .then(function(data){
+            console.log(data)
+        })
+        .catch(function(error){
+            console.log('실패함')
+        });
+
 
 </script>
 
