@@ -66,10 +66,21 @@
     }
 
     localStorage.setItem('이름', 'kim');
-    localStorage.setItem('이름')
     localStorage.removeItem('이름');
 
     makeTemp(products);
+
+    $('.buy').click(function (e){
+        var title = $(e.target).siblings('h5').text();
+        if(localStorage.getItem('cart') != null) {
+            var cart = JSON.parse(localStorage.cart);
+            cart.push(title);
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }else{
+            localStorage.setItem('cart', JSON.stringify([title]));
+        }
+
+    });
 
     //가격정렬
     $('#price').click(function (){
@@ -104,7 +115,7 @@
         makeTemp(newProducts);
     });
 
-    $('#more').click(function (){
+    /*$('#more').click(function (){
         if(count == 1){
             $.get('https://codingapple1.github.io/js/more1.json')
                 .done((data)=>{
@@ -117,7 +128,7 @@
                 });
             $("#more").hide();
         }
-    });
+    });*/
 
 
 </script>
