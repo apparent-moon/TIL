@@ -8,7 +8,9 @@ function App() {
 
     let post = "글 제목";
     let [title,changeTitle] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬독학']);
-    let [like, likeAdd] = useState(0)
+    let [modalTitle,setTitle] = useState(0);
+    let [like, likeAdd] = useState([0,0,0]);
+    let [modal, setModal] = useState(false);
 
     return (
         <div className="App">
@@ -19,27 +21,65 @@ function App() {
                 let copy = [...title];
                 copy[0] = '여자 코트 추천';
                 changeTitle(copy)
-            }}>이름변경</button>
+            }}>이름변경
+            </button>
             <button onClick={() => {
                 let copy = [...title];
                 copy.sort();
                 changeTitle(copy);
-            }}>가나다순정렬</button>
-            <div className="list">
-                <h4>{title[0]} <span onClick={() => {
-                    likeAdd(like + 1)
-                }}>❤</span> {like} </h4>
-                <p> 9월 4일 발행</p>
-            </div>
-            <div className="list">
-                <h4>{title[1]} <span>❤</span> {like} </h4>
-                <p> 9월 4일 발행</p>
-            </div>
-            <div className="list">
-                <h4>{title[2]} <span>❤</span> {like} </h4>
-                <p> 9월 4일 발행</p>
-            </div>
+            }}>가나다순정렬
+            </button>
+            {
+                title.map(function(a, i){
+                    return (
+                        <div className="list" key={i}>
+                            <h4 onClick={() => {setModal(true); setTitle(i)}}>
+                                {title[i]}
+                                <span onClick={() => {
+                                let copy = [...like];
+                                copy[i] = copy[i] + 1;
+                                likeAdd(copy);
+                                }}>❤</span> {like[i]}
+                            </h4>
+                            <p> 9월 4일 발행</p>
+                        </div>
+                    )
+                })
+            }
+
+            {
+                modal == true ? <Modal color = {'pink'} setTitle = {setTitle} modalTitle = {modalTitle} title = {title} changeTitle ={changeTitle}/> : null
+            }
+
+            <Component/>
         </div>
+    );
+}
+
+function Modal(props) {
+    return (
+        <>
+            <div className="modal" style={{background : props.color}}>
+                <h4>{props.title[props.modalTitle]}</h4>
+                <p>날짜</p>
+                <p>상세내용</p>
+                <button onClick={() => {
+                    let copy = [...props.title];
+                    copy[0] = '여자 코트 추천';
+                    props.changeTitle(copy)
+                }}>글수정</button>
+            </div>
+        </>
+    );
+}
+
+const Component = () => {
+    return(
+        <>
+            <div className="test">
+                <p>test</p>
+            </div>
+        </>
     );
 }
 
