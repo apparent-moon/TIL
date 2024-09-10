@@ -47,6 +47,10 @@ function App() {
                 })
             }
 
+            <input type="text"></input>
+            <select />
+            <textarea />
+
             {
                 modal == true ? <Modal color = {'pink'} setTitle = {setTitle} modalTitle = {modalTitle} title = {title} changeTitle ={changeTitle}/> : null
             }
