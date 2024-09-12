@@ -11,6 +11,7 @@ function App() {
     let [modalTitle,setTitle] = useState(0);
     let [like, likeAdd] = useState([0,0,0]);
     let [modal, setModal] = useState(false);
+    let [input, setInput] = useState('');
 
     return (
         <div className="App">
@@ -35,7 +36,8 @@ function App() {
                         <div className="list" key={i}>
                             <h4 onClick={() => {setModal(true); setTitle(i)}}>
                                 {title[i]}
-                                <span onClick={() => {
+                                <span onClick={(e) => {
+                                e.stopPropagation();
                                 let copy = [...like];
                                 copy[i] = copy[i] + 1;
                                 likeAdd(copy);
@@ -47,9 +49,14 @@ function App() {
                 })
             }
 
-            <input type="text"></input>
-            <select />
-            <textarea />
+            <input type="text" onChange={(e)=> {
+                setInput(e.target.value);
+            }}></input>
+            <button onClick = {() => {
+                let copy = [...title];
+                copy.push(input);
+                changeTitle(copy);
+            }}>글발행</button>
 
             {
                 modal == true ? <Modal color = {'pink'} setTitle = {setTitle} modalTitle = {modalTitle} title = {title} changeTitle ={changeTitle}/> : null
