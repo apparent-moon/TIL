@@ -9,7 +9,7 @@ function App() {
     let post = "글 제목";
     let [title,changeTitle] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬독학']);
     let [modalTitle,setTitle] = useState(0);
-    let [like, likeAdd] = useState([0,0,0]);
+    let [like, setLike] = useState([0,0,0]);
     let [modal, setModal] = useState(false);
     let [input, setInput] = useState('');
 
@@ -40,10 +40,15 @@ function App() {
                                 e.stopPropagation();
                                 let copy = [...like];
                                 copy[i] = copy[i] + 1;
-                                likeAdd(copy);
+                                setLike(copy);
                                 }}>❤</span> {like[i]}
                             </h4>
                             <p> 9월 4일 발행</p>
+                            <button onClick={() => {
+                                let copy = [...title];
+                                copy.splice(i , 1);
+                                changeTitle(copy);
+                            }}>삭제</button>
                         </div>
                     )
                 })
@@ -54,8 +59,11 @@ function App() {
             }}></input>
             <button onClick = {() => {
                 let copy = [...title];
-                copy.push(input);
-                changeTitle(copy);
+                console.log(input);
+                if(input != '') {
+                    copy.unshift(input);
+                    changeTitle(copy);
+                }
             }}>글발행</button>
 
             {
@@ -82,6 +90,21 @@ function Modal(props) {
             </div>
         </>
     );
+}
+
+class Modal2 extends React.Component{
+    constructor() {
+        super();
+        this.state = {
+            name : 'kim',
+            age : '20'
+        }
+    }
+    render() {
+        return(
+            <div>Hi</div>
+        )
+    }
 }
 
 const Component = () => {
