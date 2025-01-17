@@ -1,15 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+    let post = '변수';
 
   return (
-   <div>
-       
-   </div>
+      <div className="App">
+          <div className="black-nav">
+              <h4 style={ {color:'red', fontSize : '20px'} }>Blog</h4>
+          </div>
+          <h4>{post}</h4>
+      </div>
   )
 }
 
